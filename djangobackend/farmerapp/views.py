@@ -109,11 +109,14 @@ def updateCrop(request):
         return JsonResponse({'info': 'error Updating Crop'})
     
 
+@api_view(['GET'])
 def getCrop(request):
     if request.method == 'GET':
-        crop_id = request.data.get('crop_id')
-        listing = Listing.objects.get(id=crop_id)
-        listing_dict = model_to_dict(listing)
+        farmer_id = request.session['farmer']['id']
+        listings = Listing.objects.filter(farmer_id=farmer_id)
+        listing_dict = {}
+        for listing in listings:
+            listing_dict[listing.id] = model_to_dict(listing)
         return JsonResponse(listing_dict)
     else:
         return JsonResponse({'info': 'error Getting Crop'})

@@ -19,7 +19,7 @@ def signup(request):
         phone = request.data["phone"]
         location = request.data["location"]
         if category == 'farmer':
-            farmer = Farmer(name=name, email=email, password=password, phone=phone)
+            farmer = Farmer(name=name, email=email, password=password, phone=phone,location=location)
             farmer.save()
             farmer_dict = model_to_dict(farmer)
             request.session['farmer'] = farmer_dict
