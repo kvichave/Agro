@@ -7,6 +7,7 @@ class Farmer(models.Model):
     email = models.CharField(max_length=100,null=True)
     password = models.CharField(max_length=100)
     phone = models.CharField(max_length=100,null=True)
+    location = models.CharField(max_length=100,null=True)
     
 
     

@@ -17,12 +17,14 @@ def signup(request):
         email = request.data["email"]
         password = request.data["password"]
         phone = request.data["phone"]
+        location = request.data["location"]
         if category == 'farmer':
             farmer = Farmer(name=name, email=email, password=password, phone=phone)
             farmer.save()
             farmer_dict = model_to_dict(farmer)
             request.session['farmer'] = farmer_dict
-            print(request.session['farmer']['name']) #request.session['farmer'].name
+            print(request.session['farmer']) #request.session['farmer'].name
+            print(request.session['farmer']['id']) #request.session['farmer'].name
             print("id: ", farmer.id) #farmer.id
             return Response({'message': 'Farmer created'})
         else:
